@@ -38,7 +38,6 @@ Actions are continious and are defined by two variables, one to move toward/away
 The episode score is defined as the maximum score of the 2 agents. The environment is considered solved if this score reaches +0.5 over 100 consecutive episodes.
 
 ### Ideas for future work
-<br>
 1. We could do an hyperparameters tuning to train the agents in less epochs.
 <br><br>
 2. Some of the code for the learning part could be optimized to run faster.
