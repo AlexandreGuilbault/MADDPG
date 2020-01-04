@@ -1,7 +1,5 @@
 # MADDPG For Collaboration and Competition
 
----
-
 The goal of this project is to solve the [Collaboration and Competition](https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet) challenge from the [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) program.
 
 ### Required Libraries
@@ -13,7 +11,7 @@ The following libraries and dependencies are used:
 3. [NumPy](http://www.numpy.org/)
 4. [Pytorch 1.3](https://pytorch.org/)
 
-And the following files has been defined:
+#### The following files have been defined:
 
 1. agent.py : Contains the implementation of Random, DDPG agents and MADDPG.
 2. model.py : Contains the Actor and Critic models used by the DDPG agents.
