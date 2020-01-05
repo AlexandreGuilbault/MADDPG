@@ -38,11 +38,11 @@ class Critic(nn.Module):
         self.full_action_space = self.n_agents*self.action_space
         
         self.network = nn.Sequential(
-                nn.Linear(self.full_observation_space+self.full_action_space, self.full_observation_space*8),
+                nn.Linear(self.full_observation_space+self.full_action_space, self.full_observation_space*16),
                 nn.ReLU(),
-                nn.Linear(self.full_observation_space*8, self.full_observation_space*4),
+                nn.Linear(self.full_observation_space*16, self.full_observation_space*8),
                 nn.ReLU(),
-                nn.Linear(self.full_observation_space*4, 1)
+                nn.Linear(self.full_observation_space*8, 1)
             ).apply(init_weights)
         
     def forward(self, obs, action):

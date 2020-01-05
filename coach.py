@@ -18,7 +18,7 @@ class Coach():
         start_time = time.time()
         
         all_scores = []
-        cum_avg_scores = []
+        avg_scores = []
 
         for i_episode in range(1, n_episodes+1):
     
@@ -47,8 +47,8 @@ class Coach():
             episode_score = scores.max()
             all_scores.append(episode_score)
 
-            cum_avg_score = np.array(all_scores[-100:]).mean()
-            cum_avg_scores.append(cum_avg_score)
+            avg_score = np.array(all_scores[-100:]).mean()
+            avg_scores.append(avg_score)
 
             completion = (i_episode)/(n_episodes)
             elapsed_time = time.time() - start_time
@@ -56,11 +56,15 @@ class Coach():
             em, es = divmod(elapsed_time, 60)
             eh, em = divmod(em, 60)    
 
-            print('\rEpisode: {:4.0f}/{} | Cum.Avg.Score: {:3.3f} | Epis.Score: {:3.3f} | Elaps.Time: {:.0f}h {:02.0f}m {:02.0f}s'.format(i_episode, n_episodes, cum_avg_score, episode_score, eh, em, es), end="")
+            print('\rEpisode: {:4.0f}/{} | Avg.Score: {:3.3f} | Epis.Score: {:3.3f} | Elaps.Time: {:.0f}h {:02.0f}m {:02.0f}s'.format(i_episode, n_episodes, avg_score, episode_score, eh, em, es), end="")
             if i_episode % log_interval == 0: print()
             if i_episode % save_interval == 0: agent.save(self.save_directory,'MADDPG_Episode_{}.pth'.format(i_episode))
+            if avg_score >= 0.5: 
+                print('\nEnvironment solved after {} episodes'.format(i_episode))
+                agent.save(self.save_directory,'MADDPG_Solved.pth')
+                break
 
-        return all_scores, cum_avg_scores
+        return all_scores, avg_scores
         
         
     def watch(self, agent, n_episodes=1):

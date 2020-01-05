@@ -1,6 +1,4 @@
 import numpy as np
-import random
-from collections import namedtuple, deque
 
 import torch
 import torch.nn as nn
@@ -29,9 +27,9 @@ class RandomAgent():
     
     
 class MADDPG():
-    def __init__(self, n_agents, observation_space, action_space, action_range=[-1,1], replay_buffer_size=100000, batch_size=64, gamma=0.99, tau=0.01, actor_lr=1e-4, critic_lr=1e-4, eps_decay=0.01, min_eps=0.05, n_updates=4, seed=0):
+    def __init__(self, n_agents, observation_space, action_space, action_range=[-1,1], replay_buffer_size=100000, batch_size=64, gamma=0.99, tau=0.01, actor_lr=1e-4, critic_lr=1e-4, eps_decay=0.01, min_eps=0.05, n_updates=4, learn_every=1, seed=0):
 
-        random.seed(seed)
+        np.random.seed(seed)
         torch.manual_seed(seed)
         
         if torch.cuda.is_available() : self.device='cuda'
@@ -42,6 +40,7 @@ class MADDPG():
         
         self.gamma = gamma
         
+        self.learn_every = learn_every
         self.n_updates = n_updates
         self.tau = tau
         
@@ -68,7 +67,6 @@ class MADDPG():
                                           device=self.device)
         
         self.steps = 0
-        self.episode = 0
 
     def reset_noise(self):
         for agent in self.agents:
@@ -92,7 +90,9 @@ class MADDPG():
         
         self.replay_buffer.add(state, actions, rewards, next_state, done)
 
-        if len(self.replay_buffer) >= self.batch_size:
+        self.steps += 1
+        
+        if len(self.replay_buffer) >= self.batch_size and (self.steps%self.learn_every) == 0:
             self.learn()
 
     def learn(self):
@@ -208,7 +208,7 @@ class DDPGAgent():
         torch.save(self.actor_target.state_dict(), folder + 'Target_actor_' + suffix)
         torch.save(self.critic_target.state_dict(), folder + 'Target_critic_' + suffix)
         
-    def load(self, folder, file):
+    def load(self, folder, suffix):
         self.actor_local.load_state_dict(torch.load(folder + 'Local_actor_' + suffix))
         self.critic_local.load_state_dict(torch.load(folder + 'Local_critic_' + suffix))
         self.actor_target.load_state_dict(torch.load(folder + 'Target_actor_' + suffix))

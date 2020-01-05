@@ -3,7 +3,7 @@ import numpy as np
 
 # Slightly modified from https://github.com/songrotek/DDPG/blob/master/ou_noise.py
 class OUNoise:
-    def __init__(self, action_space, scale=0.5, mu=0., theta=0.15, sigma=0.2, device='cpu'):
+    def __init__(self, action_space, scale=0.1, mu=0., theta=0.15, sigma=0.2, device='cpu'):
         self.device = device
     
         self.action_space = action_space
