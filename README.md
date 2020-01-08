@@ -41,6 +41,14 @@ Actions are continious and are defined by two variables, one to move toward/away
 
 The episode score is defined as the maximum score of the 2 agents. The environment is considered solved if this score reaches +0.5 over 100 consecutive episodes.
 
+#### MADDPG
+
+The agents will be trained using a [Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments](https://arxiv.org/abs/1706.02275) on [Deep Deterministic Policy Gradients (DDPG) agents](https://arxiv.org/abs/1509.02971).
+
+Agents have access to the full state (all observations) during training, but only their own observation during deployment/test phase as per MADDPG architecture defined by [Lowe et al., 2017](https://arxiv.org/abs/1706.02275)
+
+![The architecture of MADDPG from Lowe et al., 2017](img/MADDPG.png)
+
 ### Ideas for future work
 1. We could do an hyperparameters tuning to train the agents in less epochs.
 <br><br>
