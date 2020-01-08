@@ -2,6 +2,10 @@
 
 The goal of this project is to solve the [Collaboration and Competition](https://github.com/udacity/deep-reinforcement-learning/tree/master/p3_collab-compet) challenge from the [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) program.
 
+Random Agent        | Trained Agent
+:------------------:|:-----------------------:
+![](img/Random.gif) | ![](img/Trained.gif)
+
 ### Required Libraries
 
 The following libraries and dependencies are used:
