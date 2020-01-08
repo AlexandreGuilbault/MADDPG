@@ -45,7 +45,7 @@ The episode score is defined as the maximum score of the 2 agents. The environme
 
 The agents will be trained using a [Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments](https://arxiv.org/abs/1706.02275) on [Deep Deterministic Policy Gradients (DDPG) agents](https://arxiv.org/abs/1509.02971).
 
-Agents have access to the full state (all observations) during training, but only their own observation during deployment/test phase as per MADDPG architecture defined by [Lowe et al., 2017](https://arxiv.org/abs/1706.02275)
+Agents have access to the full state (all observations) during training, but only their own observation during deployment/test phase as per MADDPG architecture defined by [Lowe et al., 2017](https://arxiv.org/abs/1706.02275) :
 
 <div style="text-align:center">
   <img src="img/MADDPG.png" alt="Lowe et al., 2017" height=350/>
