@@ -47,7 +47,10 @@ The agents will be trained using a [Multi-Agent Actor-Critic for Mixed Cooperati
 
 Agents have access to the full state (all observations) during training, but only their own observation during deployment/test phase as per MADDPG architecture defined by [Lowe et al., 2017](https://arxiv.org/abs/1706.02275)
 
-![The architecture of MADDPG from Lowe et al., 2017](img/MADDPG.png)
+<div style="text-align:center">
+  <img src="img/MADDPG.png" alt="Lowe et al., 2017" height=350/>
+</div>
+
 
 ### Ideas for future work
 1. We could do an hyperparameters tuning to train the agents in less epochs.
